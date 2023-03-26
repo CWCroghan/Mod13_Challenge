@@ -113,29 +113,46 @@ function buildCharts(sample) {
 
       console.log(sorted);
 
-      //var topTen = sorted.slice(0,10); 
+      var topTen = sorted.slice(0,10); 
    
-    //console.log(topTen);
+      console.log(topTen);
+      var yticks = [];
+      var ylable = [];
+      var xvalues= [];
 
-    // for ( i=0; i<yticks.length; i++ )
-    //     {
-    //       console.log( yticks[i][0] + " was measured  " +  yticks[i][1] );
-    //     };
+    topTen=topTen.reverse()
+    
+    for ( i=0; i<topTen.length; i++ )
+        {
+          console.log( topTen[i] + " was measured at " +  topTen[i][0] );
+          yticks[i]  = "otu-" + topTen[i][0];
+          xvalues[i] = topTen[i][1][0];
+          ylable[i]  = topTen[i][1][1];
 
-        
+        };
+
+        console.log(yticks);
+        console.log(ylable);
+        console.log(xvalues);
+
      // Deliverable 1: 8. Create the trace for the bar chart. 
 
     var barData = [
-
+       {x: xvalues,
+       y: yticks,
+       type: "bar",
+       orientation: 'h',
+      text: ylable }
     ];
 
     // Deliverable 1: 9. Create the layout for the bar chart. 
     var barLayout = {
+      title: "Top Ten Bactieral Cultures Found"
 
     };
-
+    
     // Deliverable 1: 10. Use Plotly to plot the data with the layout. 
-
+    Plotly.newPlot("bar", barData, barLayout);
     // Deliverable 2: 1. Create the trace for the bubble chart.
 
     // Deliverable 2: 2. Create the layout for the bubble chart.
