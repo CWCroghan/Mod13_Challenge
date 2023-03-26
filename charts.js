@@ -153,17 +153,69 @@ function buildCharts(sample) {
     
     // Deliverable 1: 10. Use Plotly to plot the data with the layout. 
     Plotly.newPlot("bar", barData, barLayout);
+
+
     // Deliverable 2: 1. Create the trace for the bubble chart.
-
+    
+    
+    var trace1 = {
+      x: bacId,
+      y: bacCount,
+      mode: 'markers',
+      marker: {
+        color: bacId,
+        colorscale: 'Electric',
+        size: bacCount
+      },
+      text: bacName
+    };
+    
+    var data = [trace1];
+     
     // Deliverable 2: 2. Create the layout for the bubble chart.
-
+    var layout = {
+      title: 'Bacteria Cultures per Sample',
+      xaxis: {title: "OTU Id"}
+    };
     // Deliverable 2: 3. Use Plotly to plot the data with the layout.
-    
-    // Deliverable 3: 4. Create the trace for the gauge chart.
-    
-    // Deliverable 3: 5. Create the layout for the gauge chart.
+    Plotly.newPlot('bubble', data, layout);
 
+    // Gauge Chart 
+    // Deliverable 3: 4. Create the trace for the gauge chart.
+
+var trace3 = [
+  {
+    type: "indicator",
+    mode: "gauge+number",
+    value: washing,
+    title: { text: "Belly Button Washing Frequency  <br> Scrubs per Week"},
+    gauge: {
+      axis: { range: [null, 10], tickwidth: 1, tickcolor: "black" },
+      bar: { color: "black" },
+      bgcolor: "white",
+      borderwidth: 2,
+      bordercolor: "gray",
+      steps:[{range:[0,2], color: "red"},
+            {range:[2,4], color:"orange"},
+            {range:[4,6], color: "yellow"},
+            {range:[6,8], color: 'hsl(66,100,40)'},
+            {range:[8,10], color: "green"}
+            ]
+      }
+  }
+];
+    // Deliverable 3: 5. Create the layout for the gauge chart.
+    var layout = {
+      width: 500,
+      height: 400,
+      margin: { t: 25, r: 25, l: 25, b: 25 },
+      paper_bgcolor: "white",
+      font: { color: "black" }
+    };
     // Deliverable 3: 6. Use Plotly to plot the gauge data and layout.
+
+    Plotly.newPlot("gauge", trace3, layout);
+
 
   });
 }
