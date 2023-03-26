@@ -26,8 +26,7 @@ init();
 function optionChanged(newSample) {
   // Fetch new data each time a new sample is selected
   buildMetadata(newSample);
-  buildCharts(newSample);
-  
+  buildCharts(newSample); 
 }
 
 // Demographics Panel 
@@ -59,28 +58,73 @@ function buildCharts(sample) {
   // Deliverable 1: 2. Use d3.json to load the samples.json file 
   d3.json("samples.json").then((data) => {
     console.log(data);
-
+    var samples = data.samples;
+    var metadata = data.metadata;
     // Deliverable 1: 3. Create a variable that holds the samples array. 
-
+    var resultArray = [];
     // Deliverable 1: 4. Create a variable that filters the samples for the object with the desired sample number.
+    resultArray =samples.filter(sampleObj => sampleObj.id == sample);
 
     // Deliverable 3: 1. Create a variable that filters the metadata array for the object with the desired sample number.
+    var metaArray = metadata.filter(sampleObj => sampleObj.id == sample);
 
     // Deliverable 1: 5. Create a variable that holds the first sample in the array.
+    var result = resultArray[0];
+    console.log(result);
 
     // Deliverable 3: 2. Create a variable that holds the first sample in the metadata array.
+    var meta = metaArray[0];
+    console.log("Meta"); console.log(meta);
 
     // Deliverable 1: 6. Create variables that hold the otu_ids, otu_labels, and sample_values.
+    var bacId = result.otu_ids;
+    var bacCount = result.sample_values;
+    var bacName = result.otu_labels;
 
+    // console.log(bacId);
+    // console.log(bacCount);
+    // console.log(bacName);
+   
     // Deliverable 3: 3. Create a variable that holds the washing frequency.
-
+    var washing = meta.wfreq;
+    console.log(washing);
 
     // Deliverable 1: 7. Create the yticks for the bar chart.
     // Hint: Get the the top 10 otu_ids and map them in descending order 
     // so the otu_ids with the most bacteria are last. 
-    var yticks = [];
+    
+      // trying to build a link between the items in the otu_ids and the counts.
 
-    // Deliverable 1: 8. Create the trace for the bar chart. 
+
+      function convertToObj(a, b, c) {
+        let obj = {};
+        for (i=0; i< a.length; i++){
+          let key = a[i];
+          obj[key] = [b[i],c[i]];
+        }
+        return obj;
+      };
+
+      var linked = convertToObj(bacId,bacCount,bacName);
+    
+      // console.log(linked);
+
+      sorted = Object.entries(linked).sort((a,b) => b[1][0] - a[1][0]);
+
+      console.log(sorted);
+
+      //var topTen = sorted.slice(0,10); 
+   
+    //console.log(topTen);
+
+    // for ( i=0; i<yticks.length; i++ )
+    //     {
+    //       console.log( yticks[i][0] + " was measured  " +  yticks[i][1] );
+    //     };
+
+        
+     // Deliverable 1: 8. Create the trace for the bar chart. 
+
     var barData = [
 
     ];
