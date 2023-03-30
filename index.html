@@ -7,40 +7,55 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Belly Button Biodiversity</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="static/css/style.css" />
 </head>
 
-<body>
-
-  <div class="container">
+<body > 
+  <div class="container" >
     <div class="row">
-      <div class="col-md-12 jumbotron text-center">
+      <div class="col-md-12 jumbotron text-center" >
         <h1>Belly Button Biodiversity Dashboard</h1>
         <p>Use the interactive charts below to explore the dataset</p>
       </div>
     </div>
     <div class="row">
-      <div class="col-md-2">
-        <div class="well">
-          <h5>Test Subject ID No.:</h5>
-          <select id="selDataset" onchange="optionChanged(this.value)"></select>
+      <div class="col-md-12">
+        <div class = "well">
+          <p>As the population on the planet grows, the search for alternative food sources intensifies.  Currently, scientists are investigating microorganisms as a possible source of much-needed protein. Although the use of microorganisms in food production isn’t anything new.  From the yeast in your ball-park beer to the culture in the cheese on your nachos, microorganisms have played a crucial role in food production.   The new research is focused on making food directly from microorganisms.  Have you heard of <i> Microbial protein</i>?  Whether as food for us or as animal feed, a significant amount of research is ongoing.  </p>
+          <p>You may have the solution without even knowing it. Each of us have millions of microorganisms living on us.  Due to our individual chemistry	and living conditions, there is a large diversity of which microorganisms we have. Our study will classify the microorganisms that live in your belly button.  If you are luck, you just may have the microorganism that will change the world.
+            </p>
+          <p>Contact Roza at roza@bellybuttons.org for more information.</p>
         </div>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+          <div class = "well">
+            <p>If you are an existing Test Subject enter your Id below to exam you results.</p>
+        <h5>Test Subject ID No.:</h5>
+          <select id="selDataset" onchange="optionChanged(this.value)"></select>
+        </div> 
+      </div> 
+      <div class="col-md-8">
         <div class="panel panel-primary">
-          <div class="panel-heading">
-            <h3 class="panel-title">Demographic Info</h3>
+          <div class="panel-heading" style="background-color: rgb(64, 21, 122);">
+            <h3 class="panel-title">Demographic Info </h3>
           </div>
           <div id="sample-metadata" class="panel-body"></div>
         </div>
       </div>
-      <div class="col-md-5">
+    </div>
+    <div class="row">
+      <div class="col-md-6">
         <div id="bar"></div>
       </div>
-      <div class="col-md-5">
+      <div class="col-md-6">
         <div id="gauge"></div>
       </div>
     </div>
     <div class="row">
       <div class="col-md-12">
-        <div id="bubble"></div>
+        <div id="bubble" ></div>
       </div>
     </div>
   </div>

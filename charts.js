@@ -1,3 +1,11 @@
+// Mod 13 Challenge
+//    :::::::::::::::IMPORTANT:::::::::::::::
+// when using external file in a JavaScript you have to run a local server
+// in Anaconda run "python -m http.server" in the folder that contains the index
+// Use http:\localhost:8000 to open the website
+//    ::::::::::::::: End note :::::::::::::::
+
+// Initialization Function to load sample data 
 function init() {
   // Grab a reference to the dropdown select element
   var selector = d3.select("#selDataset");
@@ -23,6 +31,7 @@ function init() {
 // Initialize the dashboard
 init();
 
+// Function to run when there is a new participant selected
 function optionChanged(newSample) {
   // Fetch new data each time a new sample is selected
   buildMetadata(newSample);
@@ -142,21 +151,21 @@ function buildCharts(sample) {
        y: yticks,
        type: "bar",
        orientation: 'h',
+       marker:{ color: "rgb(64, 21, 122)"},
+
       text: ylable }
     ];
 
     // Deliverable 1: 9. Create the layout for the bar chart. 
     var barLayout = {
-      title: "Top Ten Bactieral Cultures Found"
-
+      title: "Top Ten Bactieral Cultures Found",
+      
     };
     
     // Deliverable 1: 10. Use Plotly to plot the data with the layout. 
     Plotly.newPlot("bar", barData, barLayout);
 
-
     // Deliverable 2: 1. Create the trace for the bubble chart.
-    
     
     var trace1 = {
       x: bacId,
@@ -175,7 +184,10 @@ function buildCharts(sample) {
     // Deliverable 2: 2. Create the layout for the bubble chart.
     var layout = {
       title: 'Bacteria Cultures per Sample',
-      xaxis: {title: "OTU Id"}
+      xaxis: {title: "OTU Id"},
+      paper_bgcolor: "#B0C4DE",
+      bordercolor: "gray", 
+      bgcolor: "LightSteelBlue"
     };
     // Deliverable 2: 3. Use Plotly to plot the data with the layout.
     Plotly.newPlot('bubble', data, layout);
@@ -188,18 +200,19 @@ var trace3 = [
     type: "indicator",
     mode: "gauge+number",
     value: washing,
-    title: { text: "Belly Button Washing Frequency  <br> Scrubs per Week"},
+    title: { text: "Belly Button Washing Frequency  <br> Scrubs per Week",
+      color:"#58626F"},
     gauge: {
-      axis: { range: [null, 10], tickwidth: 1, tickcolor: "black" },
-      bar: { color: "black" },
-      bgcolor: "white",
+      axis: { range: [null, 10], tickwidth: 1, tickcolor: "#58626F" },
+      bar: { color: "#58626F" },
+      bgcolor: "LightSteelBlue",
       borderwidth: 2,
       bordercolor: "gray",
-      steps:[{range:[0,2], color: "red"},
-            {range:[2,4], color:"orange"},
-            {range:[4,6], color: "yellow"},
-            {range:[6,8], color: 'hsl(66,100,40)'},
-            {range:[8,10], color: "green"}
+      steps:[{range:[0,2], color: 'rgb(37, 13, 69)'},
+            {range:[2,4], color: 'rgb(64, 21, 122)'},
+            {range:[4,6], color:   'rgb(96, 47, 115)'},
+            {range:[6,8], color: 'darkgoldenrod'},
+            {range:[8,10], color: "palegoldenrod"}
             ]
       }
   }
@@ -209,13 +222,13 @@ var trace3 = [
       width: 500,
       height: 400,
       margin: { t: 25, r: 25, l: 25, b: 25 },
-      paper_bgcolor: "white",
-      font: { color: "black" }
+      paper_bgcolor: "#B0C4DE",
+      font: { color: "#58626F" }
     };
     // Deliverable 3: 6. Use Plotly to plot the gauge data and layout.
 
     Plotly.newPlot("gauge", trace3, layout);
-
-
   });
 }
+
+// End of Code 
